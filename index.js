@@ -3,13 +3,14 @@ const body_parser=require("body-parser");
 const axios=require("axios");
 const morgan = require("morgan");
 require('dotenv').config();
+const fs = require("fs");
 
 const app=express().use(body_parser.json());
 app.use(morgan("dev"));
 
 const token=process.env.TOKEN;
 const mytoken=process.env.MYTOKEN;
-
+app.use(express.static
 app.listen(process.env.PORT,()=>{
     console.log("webhook is listening");
 });
@@ -60,7 +61,7 @@ app.post("/webhook",(req,res)=>{ //i want some
                    url:"https://graph.facebook.com/v13.0/"+phon_no_id+"/messages?access_token="+token,
                    data:{
                        messaging_product:"whatsapp",
-                       to:"+917898791247",
+                       to:phon_no_id,
                        text:{
                            body:"Hi.., your message is "+msg_body
                        }
