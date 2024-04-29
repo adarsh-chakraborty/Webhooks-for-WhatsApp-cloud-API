@@ -1,9 +1,11 @@
 const express=require("express");
 const body_parser=require("body-parser");
 const axios=require("axios");
+const morgan = require("morgan");
 require('dotenv').config();
 
 const app=express().use(body_parser.json());
+app.use(morgan("dev"));
 
 const token=process.env.TOKEN;
 const mytoken=process.env.MYTOKEN;
@@ -14,6 +16,7 @@ app.listen(process.env.PORT,()=>{
 
 //to verify the callback url from dashboard side - cloud api side
 app.get("/webhook",(req,res)=>{
+    console.log("/webhook");
    let mode=req.query["hub.mode"];
    let challange=req.query["hub.challenge"];
    let token=req.query["hub.verify_token"];
