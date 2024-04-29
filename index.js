@@ -10,7 +10,6 @@ app.use(morgan("dev"));
 
 const token=process.env.TOKEN;
 const mytoken=process.env.MYTOKEN;
-app.use(express.static
 app.listen(process.env.PORT,()=>{
     console.log("webhook is listening");
 });
